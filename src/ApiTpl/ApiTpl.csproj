@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiTpl.Core\ApiTpl.Core.csproj" />
+    <ProjectReference Include="..\ApiTpl.Data\ApiTpl.Data.csproj" />
+    <ProjectReference Include="..\ApiTpl.Service\ApiTpl.Service.csproj" />
+  </ItemGroup>
+
+
+
+</Project>

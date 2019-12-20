@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Version>0.0.1</Version>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- 警告当错误处理 -->
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <!-- 加下面2行,处理SA0001 -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
+        <!-- 加下面这行,自定义代码分析规则集 -->
+        <CodeAnalysisRuleSet>..\..\_stylecop\codeanalysis.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+   <ItemGroup>   
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
