@@ -13,20 +13,12 @@ namespace ApiTpl
     /// </summary>
     public partial class Startup
     {
-        /// <summary>
-        /// appsettings
-        /// </summary>
-        /// <param name="services">services</param>
         private void AddConfigService(IServiceCollection services)
         {
             var settingConfigSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(settingConfigSection);
         }
 
-        /// <summary>
-        /// AddProDi
-        /// </summary>
-        /// <param name="services">services</param>
         private void AddProDi(IServiceCollection services)
         {
             services.Scan(scan => scan
@@ -43,10 +35,6 @@ namespace ApiTpl
                         .WithSingletonLifetime());
         }
 
-        /// <summary>
-        /// EasyCaching
-        /// </summary>
-        /// <param name="services">services</param>
         private void AddEasyCaching(IServiceCollection services)
         {
             services.AddEasyCaching(options =>
@@ -66,10 +54,6 @@ namespace ApiTpl
             });
         }
 
-        /// <summary>
-        /// HTTP
-        /// </summary>
-        /// <param name="services">services</param>
         private void AddHttpClientExt(IServiceCollection services)
         {
             services.AddHeadersPropagation();
@@ -142,6 +126,15 @@ namespace ApiTpl
                 // c.SwaggerEndpoint("/swagger/Mgr/swagger.json", "mgr API");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1 API");
             });
+        }
+
+        private void AddApiTpl(IServiceCollection services)
+        {
+            AddProDi(services);
+            AddEasyCaching(services);
+            AddConfigService(services);
+
+            AddSwaggerService(services);
         }
     }
 }

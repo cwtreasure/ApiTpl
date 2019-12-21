@@ -20,11 +20,7 @@ namespace ApiTpl
 
         public void ConfigureServices(IServiceCollection services)
         {
-            AddProDi(services);
-            AddEasyCaching(services);
-            AddConfigService(services);
-
-            AddSwaggerService(services);
+            AddApiTpl(services);
 
             services.AddControllers()
                  .AddNewtonsoftJson(config =>
