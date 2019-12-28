@@ -1,0 +1,15 @@
+{
+    "author": "Catcher Wong",
+    "classifications": [
+        "Web/WebAPI"
+    ],
+    "name": "CW.ApiTpl",
+    "identity": "CW.ApiTpl",
+    "shortName": "apitpl",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "ApiTpl",
+    "preferNameDirectory": true
+}
