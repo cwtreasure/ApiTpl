@@ -20,7 +20,7 @@ namespace ApiTpl
             AddProDi(services);
             AddEasyCaching(services);
             AddConfigService(services);
-
+            AddHttpClientExt(services);
             AddSwaggerService(services);
 
             services.AddControllers()
