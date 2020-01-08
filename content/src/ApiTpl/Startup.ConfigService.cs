@@ -22,6 +22,11 @@ namespace ApiTpl
             AddConfigService(services);
             AddHttpClientExt(services);
             AddSwaggerService(services);
+            services.AddRequestLog(x =>
+            {
+                x.EnableTraceInfo = true;
+                x.LoggerName = "ApiTpl.RequestLog";
+            });
 
             services.AddControllers()
                  .AddNewtonsoftJson(config =>
