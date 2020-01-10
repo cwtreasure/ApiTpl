@@ -34,7 +34,7 @@
                     "description": "SQLite"
                 }
             ],
-            "defaultValue": "MsSQL",
+            "defaultValue": "Ms",
             "description": "The type of SQL to use"
         },
         "MsSQL": {
