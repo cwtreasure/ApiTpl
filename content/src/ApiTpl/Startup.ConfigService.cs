@@ -1,6 +1,7 @@
 namespace ApiTpl
 {
     using ApiTpl.Core;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
@@ -17,16 +18,13 @@ namespace ApiTpl
     {
         private void AddApiTpl(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             AddProDi(services);
             AddEasyCaching(services);
             AddConfigService(services);
             AddHttpClientExt(services);
             AddSwaggerService(services);
-            services.AddRequestLog(x =>
-            {
-                x.EnableTraceInfo = true;
-                x.LoggerName = "ApiTpl.RequestLog";
-            });
 
             services.AddControllers()
                  .AddNewtonsoftJson(config =>
@@ -80,7 +78,6 @@ namespace ApiTpl
         private void AddHttpClientExt(IServiceCollection services)
         {
             services.AddHeadersPropagation();
-
             services.AddHttpApiTypedClient<Core.ApiClients.IDemoApi>(config =>
             {
                 config.HttpHost = new Uri(Configuration.GetValue<string>("urls:demo"));

@@ -3,6 +3,7 @@ namespace ApiTpl
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
+    using Serilog;
 
     /// <summary>
     /// Startup
@@ -21,7 +22,7 @@ namespace ApiTpl
                 UseSwaggerService(app);
             }
 
-            app.UseRequestLog();
+            app.UseTraceSerilog();
 
             app.UseGlobalException();
 
