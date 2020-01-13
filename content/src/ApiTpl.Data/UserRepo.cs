@@ -14,8 +14,11 @@
 
         public async Task<bool> AddAsync(User entity)
         {
+            // // 1.
             // var row = await ExecuteAsync(SqlCmds.User_Add, entity);
             // return row > 0;
+            // // 2.
+            // await this.AddAsync(entity, "user");
             return await Task.FromResult(true);
         }
     }

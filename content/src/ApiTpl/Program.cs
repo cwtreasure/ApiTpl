@@ -19,12 +19,12 @@ namespace ApiTpl
                 .MinimumLevel.Debug()
                 .WriteTo.Console(
                     outputTemplate: outputTemplate)
-                .WriteTo.File(
+                /*.WriteTo.File(
                     path: "logs/ApiTpl.log",
                     outputTemplate: outputTemplate,
                     rollingInterval: RollingInterval.Day,
                     retainedFileCountLimit: 5,
-                    encoding: System.Text.Encoding.UTF8)
+                    encoding: System.Text.Encoding.UTF8)*/
                 .CreateLogger();
 
             try

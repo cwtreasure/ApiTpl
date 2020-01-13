@@ -6,7 +6,7 @@
 
   <ItemGroup>    
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="CW.Extensions.Dapper" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(MySQL)' == 'True' ">  

@@ -6,10 +6,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/ApiTpl/ApiTpl.csproj", "src/ApiTpl/"]
-RUN dotnet restore "src/ApiTpl/ApiTpl.csproj"
 COPY . .
-WORKDIR "/src/src/ApiTpl"
+RUN dotnet restore "ApiTpl.sln"
+WORKDIR /src/src/ApiTpl
 RUN dotnet build "ApiTpl.csproj" -c Release -o /app/build
 
 FROM build AS publish

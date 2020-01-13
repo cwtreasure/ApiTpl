@@ -2,11 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>CW.ApiTpl</id>
-    <version>0.0.4</version>
+    <version>0.0.6</version>
     <description>
       quick start tpl for .net api project
     </description>
     <authors>Catcher Wong</authors>
+    <owners>Catcher Wong</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
