@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(SQLite)' == 'True' ">  
-      <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.0" />
+      <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(MsSQL)' == 'True' ">
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.0.19269.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
