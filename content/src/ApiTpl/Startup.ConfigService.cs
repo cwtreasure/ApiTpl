@@ -7,6 +7,7 @@ namespace ApiTpl
     using Microsoft.OpenApi.Models;
     using System;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Reflection;
     using WebApiClient.Extensions.HttpClientFactory;
@@ -26,6 +27,10 @@ namespace ApiTpl
             AddHttpClientExt(services);
             AddSwaggerService(services);
 
+            services.AddApiVersioning(x =>
+            {
+                x.Conventions.Add(new Microsoft.AspNetCore.Mvc.Versioning.Conventions.VersionByNamespaceConvention());
+            });
             services.AddControllers()
                  .AddNewtonsoftJson(config =>
                  {
@@ -88,6 +93,8 @@ namespace ApiTpl
         {
             services.AddSwaggerGen(c =>
             {
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1.0.0",
