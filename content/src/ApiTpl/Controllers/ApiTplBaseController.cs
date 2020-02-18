@@ -1,10 +1,6 @@
 ﻿namespace ApiTpl.Controllers
 {
-    using ApiTpl.Core;
-    using ApiTpl.Service.UserSvc;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class ApiTplBaseController : ControllerBase
     {

@@ -1,13 +1,16 @@
-﻿namespace ApiTpl.Controllers
+﻿namespace ApiTpl.V1.Controllers
 {
+    using ApiTpl.Controllers;
     using ApiTpl.Core;
     using ApiTpl.Service.UserSvc;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading;
     using System.Threading.Tasks;
 
+    [ApiVersion("1")]
     [ApiController]
     [Route("api/user")]
+    [Route("api/v{version:apiVersion}/user")]
     public class UserController : ApiTplBaseController
     {
         private readonly IUserSvc _svc;

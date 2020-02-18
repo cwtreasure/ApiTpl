@@ -9,7 +9,6 @@
     <PackageReference Include="CW.Middleware.GlobalException" Version="0.0.1" />
     <PackageReference Include="CW.Middleware.Jexus" Version="0.0.1" />
     <PackageReference Include="CW.Middleware.Serilog" Version="0.0.3" />
-    <PackageReference Include="EasyCaching.Core" Version="0.8.3" />
     <PackageReference Include="EasyCaching.InMemory" Version="0.8.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.1" />
@@ -17,7 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
-    <PackageReference Include="Scrutor" Version="3.1.0" />
+    <PackageReference Include="Scrutor" Version="3.2.0" />
     <PackageReference Include="WebApiClient.Extensions.HttpClientFactory" Version="2.1.0" />
     <PackageReference Include="WebApiClient.JIT" Version="1.1.2" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

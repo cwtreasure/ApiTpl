@@ -2,9 +2,12 @@ namespace ApiTpl
 {
     using ApiTpl.Core;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
+    using Swashbuckle.AspNetCore.SwaggerGen;
     using System;
     using System.IO;
     using System.Linq;
@@ -25,18 +28,26 @@ namespace ApiTpl
             AddEasyCaching(services);
             AddConfigService(services);
             AddHttpClientExt(services);
-            AddSwaggerService(services);
 
             services.AddApiVersioning(x =>
             {
                 x.Conventions.Add(new Microsoft.AspNetCore.Mvc.Versioning.Conventions.VersionByNamespaceConvention());
+                x.ReportApiVersions = true;
+                x.DefaultApiVersion = new ApiVersion(1, 0);
+                x.AssumeDefaultVersionWhenUnspecified = true;
+            }).AddVersionedApiExplorer(option =>
+            {
+                option.GroupNameFormat = "'v'VVV";
             });
+
             services.AddControllers()
                  .AddNewtonsoftJson(config =>
                  {
                      // config.SerializerSettings.ContractResolver = new DefaultContractResolver();
                      config.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
                  });
+
+            AddSwaggerService(services);
         }
 
         private void AddConfigService(IServiceCollection services)
@@ -73,8 +84,7 @@ namespace ApiTpl
                         config.DBConfig = new EasyCaching.InMemory.InMemoryCachingOptions
                         {
                             EnableReadDeepClone = false,
-                            EnableWriteDeepClone = false,
-                            SizeLimit = 100000
+                            EnableWriteDeepClone = false
                         };
                     }, ConstValue.AppName);
             });
@@ -89,47 +99,46 @@ namespace ApiTpl
             }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler() { UseProxy = false });
         }
 
+        private IApiVersionDescriptionProvider provider;
+
         private void AddSwaggerService(IServiceCollection services)
         {
+            provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
+
             services.AddSwaggerGen(c =>
             {
-                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-
-                c.SwaggerDoc("v1", new OpenApiInfo
+                foreach (var item in provider.ApiVersionDescriptions)
                 {
-                    Version = "v1.0.0",
-                    Title = $"v1 API",
-                    Description = "v1 API",
-                    TermsOfService = new Uri("https://www.baidu.com"),
-                    Contact = new OpenApiContact
+                    c.SwaggerDoc(item.GroupName, new OpenApiInfo
                     {
-                        Name = "Catcher Wong",
-                        Email = "catcher_hwq@outlook.com",
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "CW License",
-                        Url = new Uri("https://www.baidu.com")
-                    }
+                        Version = item.GroupName,
+                        Title = $"ApiTpl API",
+                        Description = "ApiTpl API",
+                        TermsOfService = new Uri("https://github.com/catcherwong"),
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Catcher Wong",
+                            Email = "catcher_hwq@outlook.com",
+                        },
+                        License = new OpenApiLicense
+                        {
+                            Name = "Apache License, Version 2.0",
+                            Url = new Uri("https://www.apache.org/licenses/LICENSE-2.0")
+                        }
+                    });
+                }
+
+                c.DocInclusionPredicate((docName, apiDesc) =>
+                {
+                    var versions = apiDesc.CustomAttributes()
+                        .OfType<ApiVersionAttribute>()
+                        .SelectMany(attr => attr.Versions);
+
+                    return versions.Any(v => $"v{v.ToString()}" == docName);
                 });
 
-                /*c.SwaggerDoc("Mgr", new OpenApiInfo
-                {
-                    Version = "v1.0.0",
-                    Title = $"Mgr API",
-                    Description = "Mgr API",
-                    TermsOfService = new Uri("https://www.baidu.com"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Catcher Wong",
-                        Email = "catcher_hwq@outlook.com",
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "CW License",
-                        Url = new Uri("https://www.baidu.com")
-                    }
-                });*/
+                c.OperationFilter<RemoveVersionParameterOperationFilter>();
+                c.DocumentFilter<SetVersionInPathDocumentFilter>();
 
                 var projectName = Assembly.GetExecutingAssembly().GetName().Name;
 

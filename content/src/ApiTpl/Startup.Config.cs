@@ -3,7 +3,6 @@ namespace ApiTpl
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
-    using Serilog;
 
     /// <summary>
     /// Startup
@@ -42,8 +41,10 @@ namespace ApiTpl
             });
             app.UseSwaggerUI(c =>
             {
-                // c.SwaggerEndpoint("/swagger/Mgr/swagger.json", "mgr API");
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1 API");
+                foreach (var item in provider.ApiVersionDescriptions)
+                {
+                    c.SwaggerEndpoint($"/swagger/{item.GroupName}/swagger.json", $"ApiTpl API {item.ApiVersion}");
+                }
             });
         }
     }
