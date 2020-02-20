@@ -10,8 +10,13 @@
     <owners>Catcher Wong</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
+    <projectUrl>https://github.com/cwtreasure/ApiTpl</projectUrl>
+     <icon>icon.png</icon>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
   </metadata>
+  <files>
+    <file src="icon.png" target="" />
+  </files>
 </package>
