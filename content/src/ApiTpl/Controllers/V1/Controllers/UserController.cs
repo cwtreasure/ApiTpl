@@ -27,15 +27,17 @@
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>Result</returns>
         [HttpPost]
-        public async Task<ApiSlimResponse> PostAsync([FromBody] AddUserReq req, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(ApiSlimResponse), 200)]
+        [ProducesResponseType(typeof(ApiSlimResponse), 400)]
+        public async Task<IActionResult> PostAsync([FromBody] AddUserReq req, CancellationToken cancellationToken)
         {
             var (code, msg) = req.Valid();
 
-            if (code != ApiReturnCode.Succeed) return ApiSlimResponse.GetResult(code, msg);
+            if (code != ApiReturnCode.Succeed) return BadRequest(ApiSlimResponse.GetResult(code, msg));
 
             var res = await _svc.AddUserAsync(req.BuildAddUserInput(TraceId, UserIp), cancellationToken);
 
-            return res;
+            return Ok(res);
         }
     }
 }
