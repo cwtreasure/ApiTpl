@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>CW.ApiTpl</id>
-    <version>0.0.8</version>
+    <version>0.0.9</version>
     <description>
       quick start tpl for .net api project
     </description>
@@ -14,9 +14,9 @@
      <icon>icon.png</icon>
     <packageTypes>
       <packageType name="Template" />
-    </packageTypes>
+    </packageTypes>   
   </metadata>
-  <files>
-    <file src="icon.png" target="" />
+   <files>
+      <file src="**" target="" exclude=".template.config/*" />
   </files>
 </package>
