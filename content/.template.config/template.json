@@ -39,15 +39,15 @@
         },
         "MsSQL": {
             "type": "computed",
-            "value": "(sqlType == \"MsSQL\")"
+            "value": "(sqlType == \"Ms\")"
         },
         "MySQL": {
             "type": "computed",
-            "value": "(sqlType == \"MySQL\")"
+            "value": "(sqlType == \"My\")"
         },
         "PgSQL": {
             "type": "computed",
-            "value": "(sqlType == \"PgSQL\")"
+            "value": "(sqlType == \"Pg\")"
         },
         "SQLite": {
             "type": "computed",
