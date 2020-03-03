@@ -9,7 +9,7 @@
     <authors>Catcher Wong</authors>
     <owners>Catcher Wong</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
+    <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/cwtreasure/ApiTpl</projectUrl>
      <icon>icon.png</icon>
     <packageTypes>
