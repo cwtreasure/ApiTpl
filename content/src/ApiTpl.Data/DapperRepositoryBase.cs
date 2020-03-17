@@ -92,35 +92,35 @@
         {
             using var db = GetDbConnection();
             await db.OpenAsync();
-            return await db.AddAsync(data, table, transaction, commandTimeout);
+            return await db.ExecInsertAsync(data, table, transaction, commandTimeout);
         }
 
         public async Task<int> ModifyAsync(object data, object condition, string table, IDbTransaction transaction = null, int? commandTimeout = 5)
         {
             using var db = GetDbConnection();
             await db.OpenAsync();
-            return await db.ModifyAsync(data, condition, table, transaction, commandTimeout);
+            return await db.ExecUpdateAsync(data, condition, table, transaction, commandTimeout);
         }
 
         public async Task<int> ModifyNotNullAsync(object data, object condition, string table, IDbTransaction transaction = null, int? commandTimeout = 5)
         {
             using var db = GetDbConnection();
             await db.OpenAsync();
-            return await db.ModifyNotNullAsync(data, condition, table, transaction, commandTimeout);
+            return await db.ExecUpdateNotNullAsync(data, condition, table, transaction, commandTimeout);
         }
 
         public async Task<long> GetCountAsync(object condition, string table, IDbTransaction transaction = null, int? commandTimeout = 5)
         {
             using var db = GetDbConnection();
             await db.OpenAsync();
-            return await db.GetCountAsync(condition, table, transaction, commandTimeout);
+            return await db.ExecGetCountAsync(condition, table, transaction, commandTimeout);
         }
 
         public async Task<long> GetCountAsync(string where, object condition, string table, IDbTransaction transaction = null, int? commandTimeout = 5)
         {
             using var db = GetDbConnection();
             await db.OpenAsync();
-            return await db.GetCountAsync(where, condition, table, transaction, commandTimeout);
+            return await db.ExecGetCountAsync(where, condition, table, transaction, commandTimeout);
         }
     }
 }

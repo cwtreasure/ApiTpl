@@ -1,4 +1,4 @@
-﻿namespace ApiTpl.V1.Controllers
+﻿namespace ApiTpl.Controllers.V1
 {
     using ApiTpl.Controllers;
     using ApiTpl.Core;

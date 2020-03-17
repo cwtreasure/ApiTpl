@@ -21,7 +21,7 @@ namespace ApiTpl
                 UseSwaggerService(app);
             }
 
-            app.UseTraceSerilog();
+            app.UseSerilogRequest();
 
             app.UseGlobalException();
 
