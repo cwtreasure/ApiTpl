@@ -8,7 +8,7 @@
     <PackageReference Include="CW.BaseExtensions" Version="0.0.9" />
     <PackageReference Include="CW.Middleware.GlobalException" Version="0.0.1" />
     <PackageReference Include="CW.Middleware.Jexus" Version="0.0.1" />
-    <PackageReference Include="CW.Middleware.Serilog" Version="0.0.6" />
+    <PackageReference Include="CW.Middleware.Serilog" Version="0.0.7" />
     <PackageReference Include="CW.Extensions.Dapper" Version="0.0.2" />
     <PackageReference Include="EasyCaching.InMemory" Version="0.8.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />

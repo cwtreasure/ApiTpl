@@ -11,35 +11,29 @@ namespace ApiTpl
         {
             var outputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] [{AppName}] [{SourceContext}] [{UserIp}] [{cTraceId}] {Message}{NewLine}{Exception}";
 
-            Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .Enrich.WithProperty("AppName", "ApiTpl")
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .MinimumLevel.Override("System", LogEventLevel.Warning)
-                .MinimumLevel.Debug()
-                .WriteTo.Console(
-                    outputTemplate: outputTemplate)
-                /*.WriteTo.File(
-                    path: "logs/ApiTpl.log",
-                    outputTemplate: outputTemplate,
-                    rollingInterval: RollingInterval.Day,
-                    retainedFileCountLimit: 5,
-                    encoding: System.Text.Encoding.UTF8)*/
-                .CreateLogger();
-
-            try
-            {
-                Log.ForContext<Program>().Information("Application starting...");
-                CreateHostBuilder(args).Build().Run();
-            }
-            catch (System.Exception ex)
-            {
-                Log.ForContext<Program>().Fatal(ex, "Application start-up failed!!");
-            }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
+            // with default serilog configuration
+            // CW.Middleware.Serilog.SerilogHosting.Run(() => CreateHostBuilder(args));
+            //
+            // with custom serilog configuration
+            CW.Middleware.Serilog.SerilogHosting.Run(
+                () => CreateHostBuilder(args),
+                (config) =>
+                {
+                    config.Enrich.FromLogContext()
+                          .Enrich.WithProperty("AppName", "ApiTpl")
+                          .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                          .MinimumLevel.Override("System", LogEventLevel.Warning)
+                          .MinimumLevel.Debug()
+                          .WriteTo.Console(
+                              outputTemplate: outputTemplate)
+                          /*.WriteTo.File(
+                              path: "logs/ApiTpl.log",
+                              outputTemplate: outputTemplate,
+                              rollingInterval: RollingInterval.Day,
+                              retainedFileCountLimit: 5,
+                              encoding: System.Text.Encoding.UTF8)*/
+                          ;
+                });
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -52,8 +46,6 @@ namespace ApiTpl
 #endif
 
                         .UseJexusIntegration();
-                })
-                .UseSerilog()
-            ;
+                });
     }
 }
