@@ -26,7 +26,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_stylecop", "_stylecop", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0EB43128-FABD-435A-B4BE-95DC170BA84F}"
 	ProjectSection(SolutionItems) = preProject
-		CW.ApiTpl.nuspec = CW.ApiTpl.nuspec
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
