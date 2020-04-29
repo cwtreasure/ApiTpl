@@ -35,6 +35,8 @@
     <Rule Id="SA1208" Action="None" />
     <!-- Enforce order of readonly vs. non-readonly members -->
     <Rule Id="SA1214" Action="None" />
+    <!-- Using directives should be ordered alphabetically by namespace -->
+    <Rule Id="SA1210" Action="None" />
     <!-- Fields can't start with underscore -->
     <Rule Id="SA1309" Action="None" />
     <!-- Fields Name should not contain underscore -->

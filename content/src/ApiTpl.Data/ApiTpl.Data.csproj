@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(MySQL)' == 'True' ">
-    <PackageReference Include="MySqlConnector" Version="0.63.0" />
+    <PackageReference Include="MySqlConnector" Version="0.64.2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(PgSQL)' == 'True' ">
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(MsSQL)' == 'True' ">
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
