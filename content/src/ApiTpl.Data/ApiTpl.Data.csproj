@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(MsSQL)' == 'True' ">
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.7" />
   </ItemGroup>
 
   <ItemGroup>
